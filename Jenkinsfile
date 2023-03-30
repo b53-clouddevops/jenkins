@@ -1,3 +1,4 @@
+// An example of showing Declarative Pipeline
 pipeline {
     agent any 
     stages {
