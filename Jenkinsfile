@@ -1,10 +1,24 @@
 pipeline {
-    agent any
+    agent any 
     stages {
-        stage('Hello') {
+
+        stage('Stage Name - 1') {
             steps {
-                echo 'Hello World and welcome to Jenkins Learning'
+                sh "echo This is my first stage in the Jenkins pipeline"
             }
         }
+
+        stage('Stage Name - 2') {
+            steps {
+                sh "I am executing stage - 2"
+            }
+        }
+
+        stage('Stage Name - 3') {
+            steps {
+                sh "I am executing stage - 3"
+            }
+        }
+
     }
 }
