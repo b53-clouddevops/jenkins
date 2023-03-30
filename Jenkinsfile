@@ -1,6 +1,11 @@
 // An example of showing Declarative Pipeline
 pipeline {
     agent any 
+
+    environment { 
+        ENV_URL = "pipeline.learning.com"
+    }
+
     stages {
 
         stage('Stage Name - 1') {
@@ -11,7 +16,7 @@ pipeline {
 
         stage('Stage Name - 2') {
             steps {
-                sh "echo I am executing stage - 2"
+                sh "Printing the environment variable $ENV_URL"
             }
         }
 
