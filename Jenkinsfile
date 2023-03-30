@@ -10,13 +10,13 @@ pipeline {
 
         stage('Stage Name - 2') {
             steps {
-                sh "I am executing stage - 2"
+                sh "echo I am executing stage - 2"
             }
         }
 
         stage('Stage Name - 3') {
             steps {
-                sh "I am executing stage - 3"
+                sh "echo I am executing stage - 3"
             }
         }
 
