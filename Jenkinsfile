@@ -5,7 +5,7 @@ pipeline {
 
         stage('Stage Name - 1') {
             steps {
-                sh "echo This is my first stage in the Jenkins pipeline"
+                sh "echo I am using Pipeline Syntax Help"
             }
         }
 
@@ -17,7 +17,13 @@ pipeline {
 
         stage('Stage Name - 3') {
             steps {
-                sh "echo I am executing stage - 3"
+                sh '''
+               
+                echo I am using Pipeline Syntax Help
+                echo demo to show multiple lines
+                echo Printing multiple lines with a single usage of sh command
+                
+                '''
             }
         }
 
