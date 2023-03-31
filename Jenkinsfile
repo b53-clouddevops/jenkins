@@ -3,7 +3,7 @@ pipeline {
     agent any 
 
     environment { 
-        ENV_URL = "pipeline.learning.com"
+        ENV_URL = "pipeline.learning.com"             // Declaring pipeline at Pipeline level
     }
 
     stages {
@@ -22,11 +22,15 @@ pipeline {
 
         stage('Stage Name - 3') {
             steps {
+                    environment { 
+                        ENV_URL = "stage.learning.com"             // Declaring pipeline at stage level
+                    }
                 sh '''
                
-                echo I am using Pipeline Syntax Help
-                echo demo to show multiple lines
-                echo Printing multiple lines with a single usage of sh command
+                    echo I am using Pipeline Syntax Help
+                    echo demo to show multiple lines
+                    echo Printing multiple lines with a single usage of sh command
+                    echo Printing the environment variable ${ENV_URL}
                 
                 '''
             }
