@@ -42,7 +42,15 @@ pipeline {
             }
         }
 
-        stage('Stage Name - 3') {
+        stage('Final Stagee ; Needs Attention') {
+           input {
+                message "Should we continue?"
+                ok "Yes, we should."
+                submitter "alice,bob"
+                parameters {
+                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+                }
+            }
             environment { 
                         ENV_URL = "stage.learning.com"               // Declaring pipeline at stage level
                 }
