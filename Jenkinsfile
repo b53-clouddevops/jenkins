@@ -21,10 +21,10 @@ pipeline {
         }
 
         stage('Stage Name - 3') {
-            steps {
-                    environment { 
+            environment { 
                         ENV_URL = "stage.learning.com"             // Declaring pipeline at stage level
-                    }
+                }
+            steps {
                 sh '''
                
                     echo I am using Pipeline Syntax Help
