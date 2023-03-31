@@ -3,7 +3,8 @@ pipeline {
     agent any 
 
     environment { 
-        ENV_URL = "pipeline.learning.com"             // Declaring pipeline at Pipeline level
+        ENV_URL  = "pipeline.learning.com"             // Declaring pipeline at Pipeline level
+        SSH_CREDENTIALS = credentials('SSH_CRED') 
     }
 
     stages {
@@ -17,19 +18,16 @@ pipeline {
         stage('Stage Name - 2') {
             steps {
                 sh "echo Printing the environment variable ${ENV_URL}"
+                sh "env"                                              // command which prints the existing environment variables
             }
         }
 
         stage('Stage Name - 3') {
             environment { 
-                        ENV_URL = "stage.learning.com"             // Declaring pipeline at stage level
+                        ENV_URL = "stage.learning.com"               // Declaring pipeline at stage level
                 }
             steps {
                 sh '''
-               
-                    echo I am using Pipeline Syntax Help
-                    echo demo to show multiple lines
-                    echo Printing multiple lines with a single usage of sh command
                     echo Printing the environment variable ${ENV_URL}
                 
                 '''
