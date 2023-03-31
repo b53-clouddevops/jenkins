@@ -21,7 +21,7 @@ pipeline {
 
         stage('Stage Name - 1') {
             steps {
-                sh "echo I am using Pipeline Syntax Help"
+                sh "echo I am using the Pipeline Syntax Help"
             }
         }
 
