@@ -43,6 +43,7 @@ pipeline {
         }
 
         stage('Final Stagee ; Needs Attention') {
+           when { branch 'dev' }
            input {
                 message "Should we continue?"
                 ok "Yes, we should."
