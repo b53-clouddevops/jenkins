@@ -1,6 +1,6 @@
 // An example of showing Declarative Pipeline
 pipeline {
-    agent any 
+    agent { label 'ws' }
 
     environment { 
         ENV_URL  = "pipeline.learning.com"             // Declaring pipeline at Pipeline level
@@ -27,6 +27,7 @@ pipeline {
             parallel {
                 stage('One') {
                     steps {
+                        sh "ifconfig"
                         sh "echo STAGE ONE"
                         sh "sleep 6"
                     }
