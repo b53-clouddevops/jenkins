@@ -27,6 +27,9 @@ pipeline {
             parallel {
                 stage('One') {
                     steps {
+                        sh "env"
+                        sh "printing the git repo name $GIT_URL"
+                        sh "cat .git/config"
                         sh "cat /home/centos/file.txt"
                         sh "echo STAGE ONE"
                         sh "sleep 6"
