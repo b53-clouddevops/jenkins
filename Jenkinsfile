@@ -32,19 +32,19 @@ pipeline {
                         sh "cat .git/config"
                         sh "cat /home/centos/file.txt"
                         sh "echo STAGE ONE"
-                        sh "sleep 6"
+                        sh "sleep 100"
                     }
                 }
                 stage('Two') {
                     steps {
                         sh "echo STAGE TWO"
-                        sh "sleep 6"
+                        sh "sleep 100"
                     }
                 }
                 stage('Three') {
                     steps {
                         sh "echo STAGE THREE"
-                        sh "sleep 6"
+                        sh "sleep 100"
                     }
                 }
             }
