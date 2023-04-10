@@ -97,4 +97,7 @@ node {
     stage('Test') {
         print 'Welcome to scripted pipelines'
     }
+    stage('QA') {
+        print 'Scripted pipelines makes things easy and DRY'
+    }
 }
