@@ -7,69 +7,6 @@ pipeline {
         ansiColor('xterm')    // Add's color to the output : Ensure you install AnsiColor Plugin.
     }
     stages {
-        stage('Backend') { 
-            parallel {
-                stage('Destroy Cart') {
-                    steps {
-                        git branch: 'main', url: 'https://github.com/b53-clouddevops/cart.git'
-                                sh "cd mutable-infra"
-                                sh "terrafile -f env-${ENV}/Terrafile"
-                                sh "terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure"
-                                sh "terraform destroy -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=0.0.1  -auto-approve"
-                        }
-                    }
-                stage('Destroy Cataloue') {
-                    steps {
-                        git branch: 'main', url: 'https://github.com/b53-clouddevops/catalogue.git'
-                                sh "cd mutable-infra"
-                                sh "terrafile -f env-${ENV}/Terrafile"
-                                sh "terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure"
-                                sh "terraform destroy -var-file=env-${ENV}/${ENV}.tfvars  -var APP_VERSION=0.0.1  -auto-approve"
-                        }
-                    }
-
-                stage('Destroy user') {
-                    steps {
-                        git branch: 'main', url: 'https://github.com/b53-clouddevops/user.git'
-                                sh "cd mutable-infra"
-                                sh "terrafile -f env-${ENV}/Terrafile"
-                                sh "terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure"
-                                sh "terraform destroy -var-file=env-${ENV}/${ENV}.tfvars  -var APP_VERSION=0.0.1  -auto-approve"
-                        }
-                    }
-
-                stage('Destroy shipping') {
-                    steps {
-                        git branch: 'main', url: 'https://github.com/b53-clouddevops/shipping.git'
-                                sh "cd mutable-infra"
-                                sh "terrafile -f env-${ENV}/Terrafile"
-                                sh "terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure"
-                                sh "terraform destroy -var-file=env-${ENV}/${ENV}.tfvars  -var APP_VERSION=0.0.1  -auto-approve"
-                        }
-                    }
-
-                stage('Destroy payment') {
-                    steps {
-                        git branch: 'main', url: 'https://github.com/b53-clouddevops/payment.git'
-                                sh "cd mutable-infra"
-                                sh "terrafile -f env-${ENV}/Terrafile"
-                                sh "terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure"
-                                sh "terraform destroy -var-file=env-${ENV}/${ENV}.tfvars  -var APP_VERSION=0.0.1  -auto-approve"
-                        }
-                    }
-
-                stage('Destroy frontend') {
-                    steps {
-                        git branch: 'main', url: 'https://github.com/b53-clouddevops/frontend.git'
-                                sh "cd mutable-infra"
-                                sh "terrafile -f env-${ENV}/Terrafile"
-                                sh "terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars  -var APP_VERSION=0.0.1  -reconfigure"
-                                sh "terraform destroy -var-file=env-${ENV}/${ENV}.tfvars -auto-approve"
-                            }
-                        }
-                    }
-                }
-
         stage('Terraform Destroy Databases') {
             steps {
                         git branch: 'main', url: 'https://github.com/b53-clouddevops/terraform-databases.git'
