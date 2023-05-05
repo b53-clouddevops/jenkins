@@ -13,20 +13,18 @@ pipeline {
                     steps {
                         git branch: 'main', url: 'https://github.com/b53-clouddevops/cart.git'
                                 sh "cd terraform-mutable"
-                                sh "export TF_VAR_APP_VERSIOn="0.0.1"
                                 sh "terrafile -f env-${ENV}/Terrafile"
                                 sh "terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure"
-                                sh "terraform destroy -var-file=env-${ENV}/${ENV}.tfvars -auto-approve"
+                                sh "terraform destroy -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=0.0.1  -auto-approve"
                         }
                     }
                 stage('Destroy Cataloue') {
                     steps {
                         git branch: 'main', url: 'https://github.com/b53-clouddevops/catalogue.git'
                                 sh "cd terraform-mutable"
-                                sh "export TF_VAR_APP_VERSIOn="0.0.1"
                                 sh "terrafile -f env-${ENV}/Terrafile"
                                 sh "terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure"
-                                sh "terraform destroy -var-file=env-${ENV}/${ENV}.tfvars -auto-approve"
+                                sh "terraform destroy -var-file=env-${ENV}/${ENV}.tfvars  -var APP_VERSION=0.0.1  -auto-approve"
                         }
                     }
 
@@ -34,10 +32,9 @@ pipeline {
                     steps {
                         git branch: 'main', url: 'https://github.com/b53-clouddevops/user.git'
                                 sh "cd terraform-mutable"
-                                sh "export TF_VAR_APP_VERSIOn="0.0.1"
                                 sh "terrafile -f env-${ENV}/Terrafile"
                                 sh "terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure"
-                                sh "terraform destroy -var-file=env-${ENV}/${ENV}.tfvars -auto-approve"
+                                sh "terraform destroy -var-file=env-${ENV}/${ENV}.tfvars  -var APP_VERSION=0.0.1  -auto-approve"
                         }
                     }
 
@@ -45,10 +42,9 @@ pipeline {
                     steps {
                         git branch: 'main', url: 'https://github.com/b53-clouddevops/shipping.git'
                                 sh "cd terraform-mutable"
-                                sh "export TF_VAR_APP_VERSIOn="0.0.1"
                                 sh "terrafile -f env-${ENV}/Terrafile"
                                 sh "terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure"
-                                sh "terraform destroy -var-file=env-${ENV}/${ENV}.tfvars -auto-approve"
+                                sh "terraform destroy -var-file=env-${ENV}/${ENV}.tfvars  -var APP_VERSION=0.0.1  -auto-approve"
                         }
                     }
 
@@ -56,10 +52,9 @@ pipeline {
                     steps {
                         git branch: 'main', url: 'https://github.com/b53-clouddevops/payment.git'
                                 sh "cd terraform-mutable"
-                                sh "export TF_VAR_APP_VERSIOn="0.0.1"
                                 sh "terrafile -f env-${ENV}/Terrafile"
                                 sh "terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure"
-                                sh "terraform destroy -var-file=env-${ENV}/${ENV}.tfvars -auto-approve"
+                                sh "terraform destroy -var-file=env-${ENV}/${ENV}.tfvars  -var APP_VERSION=0.0.1  -auto-approve"
                         }
                     }
 
@@ -67,9 +62,8 @@ pipeline {
                     steps {
                         git branch: 'main', url: 'https://github.com/b53-clouddevops/frontend.git'
                                 sh "cd terraform-mutable"
-                                sh "export TF_VAR_APP_VERSIOn="0.0.1"
                                 sh "terrafile -f env-${ENV}/Terrafile"
-                                sh "terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure"
+                                sh "terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars  -var APP_VERSION=0.0.1  -reconfigure"
                                 sh "terraform destroy -var-file=env-${ENV}/${ENV}.tfvars -auto-approve"
                             }
                         }
