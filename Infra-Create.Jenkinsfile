@@ -36,9 +36,9 @@ pipeline {
                         sh "terraform apply -var-file=env-${ENV}/${ENV}.tfvars -auto-approve"
                     }
                 }
-           stage('Backend') {
-            parallel {
-               stage('Creating-User') {
+        stage('Backend') {
+           parallel {
+            stage('Creating-User') {
                    steps {
                        dir('USER') {  git branch: 'main', url: 'https://github.com/b53-clouddevops/user.git'
                           sh '''
@@ -51,7 +51,7 @@ pipeline {
                             }
                         }
                    }
-               stage('Creating-Catalogue') {
+            stage('Creating-Catalogue') {
                    steps {
                        dir('Catalogue') {  git branch: 'main', url: 'https://github.com/b53-clouddevops/catalogue.git'
                           sh '''
@@ -105,6 +105,19 @@ pipeline {
                     }
                 } 
             }
+            stage('Creating-Frontend') {
+                steps {
+                    dir('PAYMENT') {  git branch: 'main', url: 'https://github.com/b53-clouddevops/frontend.git'
+                          sh '''
+                            cd mutable-infra
+                            terrafile -f env-${ENV}/Terrafile
+                            terraform init -backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure
+                            terraform plan -var-file=env-${ENV}/${ENV}.tfvars  -var APP_VERSION=0.0.1
+                            terraform apply -var-file=env-${ENV}/${ENV}.tfvars  -var APP_VERSION=0.0.1 -auto-approve
+                          '''
+                         }
+                     }
+                }
         }    
     }                        
 
