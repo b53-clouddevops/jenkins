@@ -7,8 +7,6 @@ pipeline {
         ansiColor('xterm')    // Add's color to the output : Ensure you install AnsiColor Plugin.
     }
     stages {
-
-        stage('Backend') {
             stage('Creating-User') {
                    steps {
                        dir('USER') {  git branch: 'main', url: 'https://github.com/b53-clouddevops/user.git'
