@@ -9,7 +9,6 @@ pipeline {
     stages {
 
         stage('Backend') {
-           parallel {
             stage('Creating-User') {
                    steps {
                        dir('USER') {  git branch: 'main', url: 'https://github.com/b53-clouddevops/user.git'
@@ -85,7 +84,6 @@ pipeline {
                         }
                     }
                 } 
-            }
         stage('Terraform Destroy Databases') {
             steps {
                 git branch: 'main', url: 'https://github.com/b53-clouddevops/terraform-databases.git'
