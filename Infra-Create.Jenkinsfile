@@ -77,18 +77,18 @@ pipeline {
                          }
                      }
                 }
-            stage('Creating-Shipping') {
-                steps {
-                    dir('SHIPPING') {  git branch: 'main', url: 'https://github.com/b53-clouddevops/shipping.git'
-                          sh '''
-                            cd mutable-infra
-                            terrafile -f env-${ENV}/Terrafile
-                            terraform init -backend-config=env-${ENV}/${ENV}-backend.tfvars
-                            terraform apply -var-file=env-${ENV}/${ENV}.tfvars  -var APP_VERSION=0.0.1  -auto-approve
-                          '''
-                            }
-                        }
-                    }
+            // stage('Creating-Shipping') {
+            //     steps {
+            //         dir('SHIPPING') {  git branch: 'main', url: 'https://github.com/b53-clouddevops/shipping.git'
+            //               sh '''
+            //                 cd mutable-infra
+            //                 terrafile -f env-${ENV}/Terrafile
+            //                 terraform init -backend-config=env-${ENV}/${ENV}-backend.tfvars
+            //                 terraform apply -var-file=env-${ENV}/${ENV}.tfvars  -var APP_VERSION=0.0.1  -auto-approve
+            //               '''
+            //                 }
+            //             }
+            //         }
             stage('Creating-Payment') {
                 steps {
                     dir('PAYMENT') {  git branch: 'main', url: 'https://github.com/b53-clouddevops/payment.git'
