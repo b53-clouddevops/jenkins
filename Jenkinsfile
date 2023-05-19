@@ -35,6 +35,7 @@ pipeline {
                     steps {
                         sh "echo STAGE TWO"
                         sh "sleep 1"
+                        sh "echo Printing ${MYSECRET}"
                     }
                 }
                 stage('Three') {
