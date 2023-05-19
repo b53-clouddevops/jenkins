@@ -46,13 +46,7 @@ pipeline {
                 }
             }
         }
-     
-        stage('Testing mvn commands') {
-            steps {
-                sh "mvn --version"
-            }
-        }
-       
+            
         stage('Stage Name - 1') {
             steps {
                 sh "echo I am using the Pipeline Syntax Help"
@@ -64,26 +58,6 @@ pipeline {
             steps {
                 sh "echo Printing the environment variable ${ENV_URL}"
                 sh "env"                                              // command which prints the existing environment variables
-            }
-        }
-
-        stage('Final Stagee ; Needs Attention') {
-           input {
-                message "Should we continue?"
-                ok "Yes, we should."
-                submitter "alice,bob"
-                parameters {
-                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
-                }
-            }
-            environment { 
-                        ENV_URL = "stage.learning.com"               // Declaring pipeline at stage level
-                }
-            steps {
-                sh '''
-                    echo Printing the environment variable ${ENV_URL}
-                
-                '''
             }
         }
     }
