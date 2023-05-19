@@ -1,4 +1,4 @@
-// // An example of showing Declarative Pipeline
+// An example of showing Declarative Pipeline
 pipeline {
     agent { label 'ws' }
 
