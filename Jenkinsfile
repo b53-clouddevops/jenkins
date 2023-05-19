@@ -26,7 +26,7 @@ pipeline {
                     script {
                         env.MYSECRET=sh(returnStdout: true, script: "aws secretsmanager get-secret-value --secret-id roboshop/secrets  --region us-east-1  | jq --raw-output '.SecretString' | jq -r '.SSH_PASSWORD'").trim()
                         }
-                        sh "aws secretsmanager get-secret-value --secret-id roboshop/secrets  --region us-east-1  | jq --raw-output ".SecretString" | jq -r ".SSH_PASSWORD""  > /tmp/secret.txt 
+                        sh "aws secretsmanager get-secret-value --secret-id roboshop/secrets  --region us-east-1  | jq --raw-output '.SecretString' | jq -r '.SSH_PASSWORD'"  > /tmp/secret.txt 
                         sh "cat /tmp/secret.txt"
                         sh "echo Printing the secret ${MYSECRET}"
                     }
