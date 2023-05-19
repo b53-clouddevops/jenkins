@@ -38,12 +38,6 @@ pipeline {
                         sh "echo Printing ${MYSECRET}"
                     }
                 }
-                stage('Three') {
-                    steps {
-                        sh "echo STAGE THREE"
-                        sh "sleep 1"
-                    }
-                }
             }
         }
             
