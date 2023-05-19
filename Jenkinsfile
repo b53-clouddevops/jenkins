@@ -28,7 +28,7 @@ pipeline {
                         }
                         sh "aws secretsmanager get-secret-value --secret-id roboshop/secrets  --region us-east-1  | jq --raw-output '.SecretString' | jq -r '.SSH_PASSWORD'"
                         sh "cat /home/centos/secret.txt"
-                        sh "echo Printing the secret ${MYSECRET}"
+                        sh "echo Printing the secret value ${MYSECRET}"
                     }
                 }
                 stage('Two') {
