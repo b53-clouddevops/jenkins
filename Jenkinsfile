@@ -51,7 +51,7 @@ pipeline {
             when { branch 'dev' }
             steps {
                 sh "echo Printing the environment variable ${ENV_URL}"
-                sh "env"                                              // command which prints the existing environment variables
+                sh "env"                                               // command which prints the existing environment variables
             }
         }
     }
