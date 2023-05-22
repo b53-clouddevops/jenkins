@@ -77,9 +77,6 @@ pipeline {
                             }
                         }
                     }
-
-                } 
-            }
             stage('Creating-Shipping') {
                 steps {
                     dir('SHIPPING') {  git branch: 'main', url: 'https://github.com/b53-clouddevops/shipping.git'
@@ -107,6 +104,11 @@ pipeline {
                             }
                         }
                     }
+
+                } 
+            }
+
+
             stage('Creating-Frontend') {
                 steps {
                     dir('PAYMENT') {  git branch: 'main', url: 'https://github.com/b53-clouddevops/frontend.git'
