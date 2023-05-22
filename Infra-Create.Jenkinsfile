@@ -85,7 +85,7 @@ pipeline {
                     dir('SHIPPING') {  git branch: 'main', url: 'https://github.com/b53-clouddevops/shipping.git'
                           sh '''
                             cd mutable-infra
-                            sleep 300   
+                            sleep 30   
                             terrafile -f env-${ENV}/Terrafile
                             terraform init -backend-config=env-${ENV}/${ENV}-backend.tfvars
                             terraform apply -var-file=env-${ENV}/${ENV}.tfvars  -var APP_VERSION=0.0.1  -auto-approve
@@ -98,7 +98,7 @@ pipeline {
                     dir('PAYMENT') {  git branch: 'main', url: 'https://github.com/b53-clouddevops/payment.git'
                           sh '''
                             cd mutable-infra
-                            sleep 300
+                            sleep 30
                             terrafile -f env-${ENV}/Terrafile
                             terraform init -backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure
                             terraform plan -var-file=env-${ENV}/${ENV}.tfvars  -var APP_VERSION=0.0.1
