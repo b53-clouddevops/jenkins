@@ -80,18 +80,6 @@ pipeline {
 
                 } 
             }
-            stage('Creating-Frontend') {
-                steps {
-                    dir('PAYMENT') {  git branch: 'main', url: 'https://github.com/b53-clouddevops/frontend.git'
-                          sh '''
-                            cd mutable-infra
-                            terrafile -f env-${ENV}/Terrafile
-                            terraform init -backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure
-                            terraform apply -var-file=env-${ENV}/${ENV}.tfvars  -var APP_VERSION=0.0.1 -auto-approve
-                          '''
-                         }
-                     }
-                }
             stage('Creating-Shipping') {
                 steps {
                     dir('SHIPPING') {  git branch: 'main', url: 'https://github.com/b53-clouddevops/shipping.git'
@@ -119,6 +107,18 @@ pipeline {
                             }
                         }
                     }
+            stage('Creating-Frontend') {
+                steps {
+                    dir('PAYMENT') {  git branch: 'main', url: 'https://github.com/b53-clouddevops/frontend.git'
+                          sh '''
+                            cd mutable-infra
+                            terrafile -f env-${ENV}/Terrafile
+                            terraform init -backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure
+                            terraform apply -var-file=env-${ENV}/${ENV}.tfvars  -var APP_VERSION=0.0.1 -auto-approve
+                          '''
+                         }
+                     }
+                }
             }    
         }                        
 
