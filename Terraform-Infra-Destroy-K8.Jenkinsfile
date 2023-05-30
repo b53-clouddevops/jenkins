@@ -7,19 +7,7 @@ pipeline {
         ansiColor('xterm')    // Add's color to the output : Ensure you install AnsiColor Plugin.
     }
     stages {
-        
-        // stage('Deleting-EKS') {
-        //     steps {
-        //         dir('EKS') {  git branch: 'main', url: 'https://github.com/b53-clouddevops/kubernetes.git'
-
-        //                 sh ''' 
-        //                     cd eks 
-        //                     make destroy
-        //                 ''' 
-        //              }
-        //          }
-        //     }
-            
+                    
         stage('Terraform Delete Databases') {
             steps {
                 git branch: 'main', url: 'https://github.com/b53-clouddevops/terraform-databases.git'
@@ -28,6 +16,18 @@ pipeline {
                 sh "terraform destroy -var-file=env-${ENV}/${ENV}.tfvars -auto-approve"
             }
         }
+
+        stage('Deleting-EKS') {
+            steps {
+                dir('EKS') {  git branch: 'main', url: 'https://github.com/b53-clouddevops/kubernetes.git'
+
+                        sh ''' 
+                            cd eks 
+                            make destroy
+                        ''' 
+                     }
+                 }
+            }
 
         stage('Terraform Deleting Network') {
             steps {
